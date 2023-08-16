@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      {% block title %}
+        Bienvenue sur le portail en ligne de l'ISTM
+      {% endblock %}
+    </title>
+    <link rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>" />
+    {% block stylesheets %}
+      {{ encore_entry_link_tags('app') }}
+      <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous" />
+      <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="/_assets/css/main.css" />
+    {% endblock %}
+  </head>
+  <body>
+    <header>
+      <div class="top-header flex">
+        <div class="menu">
+          <div class="item-menu flex">
+            <div class="icon-menu">
+              <i class="fa-solid fa-angles-down"></i>
+            </div>
+            <div class="logo-title flex">
+              <h1>
+                ISTM UVIRA
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div class="hours flex gap-10">
+          <div class="start-hour"></div>
+          <div class="start-hour"></div>
+        </div>
+      </div>
+      <div class="container-header">
+        <div class="middle-header flex">
+          <a href="/">
+            <img src="/_assets/images/logo/logo_istm.png" alt="" />
+          </a>
+          <nav class="flex">
+            <ul class="nav-bar flex gap-15">
+              <li class="nav-item"><a href="/">Acceuil</a></li>
+              <div class="separate-menu"></div>
+              <li class="nav-item"><a href="">A propos</a></li>
+              <div class="separate-menu"></div>
+              <li class="nav-item down">
+                <a href="">Projets</a>
+                <ul>
+                  <li class="nav-item"><a href="">Actualites</a></li>
+                </ul>
+              </li>
+              <div class="separate-menu"></div>
+              <li class="nav-item"><a href="/contact">Evenements</a></li>
+              <div class="separate-menu"></div>
+              <li class="nav-item"><a href="/actualites_evenements">Actualités</a></li>
+              <div class="separate-menu"></div>
+              <li class="nav-item"><a href="/contact">Recherches</a></li>
+              <div class="separate-menu"></div>
+              <li class="nav-item"><a href="/contact">Contact</a></li>
+              <div class="arrow-left">
+                <a href=""><i class="fa-solid fa-caret-left"></i></a>
+              </div>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      {% block slider %}
+
+      {% endblock %}
+    </div>
+    {% block events_news %}
+{% endblock %}
+    {% block body %}
+
+    {% endblock %}
+
+    <footer></footer>
+
+    {% block javascripts %}
+      {{ encore_entry_script_tags('app') }}
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    {% endblock %}
+  </body>
+</html>

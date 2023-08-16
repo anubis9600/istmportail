@@ -1,0 +1,99 @@
+.news-board{
+    width: 100%;
+}
+
+.news-board>.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.news-board .container>h1{
+    font-family: 'Museo500';
+}
+.all-news-item{
+    flex-wrap: wrap;
+    max-width: 100%;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 10px;
+}
+.all-news-item .top-news{
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 20px;
+    flex: 2;
+}
+.news-legende{
+    padding: 10px;
+}
+.top-news a.news-item{
+    flex: 1;
+}
+a.news-item img{
+    width: 100%;
+}
+.news-item{
+    text-decoration: none;
+    background-color: var(--main-color-org);
+    border-radius: 0 0 5px 5px;
+}
+h2.news-title{
+    font-family: 'Museo500';
+    color: var(--main-color);
+    transition: 0.2s;
+}
+.bottom-news{
+    width: 100%;
+    gap: 10px;
+}
+
+.btn-donnee-actu a.bouton-transparent-large {
+    border: 2px solid var(--main-color);
+    border-radius: 8px;
+    -webkit-box-shadow: 2px 3px 4px 0 rgba(0,0,0,0.24);
+    -moz-box-shadow: 2px 3px 4px 0 rgba(0,0,0,0.24);
+    box-shadow: 2px 3px 4px 0 rgba(0,0,0,0.24);
+    color: var(--main-color);
+    display: inline-block;
+    font-size: 0.9em;
+    font-weight: bold;
+    line-height: 1.25em;
+    margin-top: 0.75rem;
+    padding: 0.625em 2.153em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    right: 50%;
+}
+.btn-donnee-actu a.bouton-transparent-large:hover{
+    background-color: var(--main-color);
+    color: white;
+}
+.author{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.news-legende .author .author-avatar{
+    width: 30px;
+    padding-bottom: 5px;
+}
+.author-avatar img{
+    width: 100%;
+    border-radius: 5px;
+}
+.author h4.author-name{
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #737373;
+}
+h2.news-title:hover{
+    color: var(--main-color);
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 655px) {
+    .bottom-news{
+        display: none;
+    }
+}

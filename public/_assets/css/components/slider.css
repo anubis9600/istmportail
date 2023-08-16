@@ -1,0 +1,32 @@
+.carousel-caption{
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+.carousel-indicators li{
+    height: 10px;   
+    width: 10px;
+    border-radius: 50px;
+}
+
+.carou{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+}
+.carou h1{
+    font-family: 'museo700';
+    font-size: 4rem;
+    font-weight: bolder;
+}
+.carou p{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.carousel-indicators .active {
+    background-color: var(--main-color) ;
+}

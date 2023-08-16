@@ -1,0 +1,28 @@
+.all-social-media{
+    justify-content: center;
+    padding: 20px 0;
+    gap: 20px;
+}
+.all-social-media .social-media-text{
+    font-family: 'Museo500';
+    font-size: calc(1.3625rem + 1.35vw);
+    color: #4a4a4a;
+}
+.all-social-media .social-media-items .social-media-item{
+    font-size: calc(1.4rem + 1.8vw);
+    padding: 0 2rem;
+    color: var(--main-color);
+}
+.all-social-media .social-media-items .social-media-item:hover{
+    color: var(--main-color-lourd) !important;
+    cursor: pointer;
+}
+@media screen and (max-width:700px) {
+    .all-social-media{
+        flex-direction: column;
+        text-align: center;
+    }
+    .all-social-media .social-media-items{
+        justify-content: space-evenly;
+    }
+}

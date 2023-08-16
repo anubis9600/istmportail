@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Actualités - ISTM Uvira
+{% endblock %}
+{% block events_news %} 
+  <div class="header-events-news">
+    <div class="container">
+      <div class="events-news-title flex">
+        <h1><a href="">Actualités</a> et <a href="">Evénements</a></h1>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-events-news">
+    <div class="container">
+      <div class="events-news-menu">
+      <ul class="flex">
+        <li><a href=""><i class="fa-solid fa-house"></i></a></li>
+        <li><a href="">Nouvelles</a></li>
+        <li><a href="">Événements</a></li>
+        <li><a href="">Nous joindre</a></li>
+      </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block body %}
+  <div class="container">
+    <div class="news-events-container">
+      <div class="last-news">
+        <h3>Dernieres nouvelles</h3>
+      </div>
+      <div class="last-events">
+        <h3>Derniers Evenements</h3>
+      </div>
+    </div>
+  </div>
+{% endblock %}

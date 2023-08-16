@@ -1,0 +1,54 @@
+
+.header-events-news{
+    background-color: var(--main-color-org);
+    height: 100px;
+}
+.header-events-news>.container{
+    height: 100%;
+}
+.header-events-news .events-news-title{
+    height: 100%;
+    align-items: center;
+}
+.header-events-news .events-news-title h1{
+    font-family: 'Museo500';
+    color: #4a4a4a;
+}
+.header-events-news .events-news-title h1 a:first-child:hover,
+.header-events-news .events-news-title h1 a:nth-child(2):hover{
+    text-decoration: underline;
+    color: var(--main-color);
+}
+.events-news-menu{
+    height: 80px;
+}
+
+.bottom-events-news{
+    background-color: #4a4a4a;
+    height: 100%;
+}
+.bottom-events-news .events-news-menu ul{
+    padding-left: 0;
+    height: 100%;
+}
+.bottom-events-news .events-news-menu ul li:first-child{
+    color: var(--main-color);
+    width: 80px;
+    background-color: #3a3a3a;
+}
+.bottom-events-news .events-news-menu ul li{
+    display: flex;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 100%;
+    border-right: 2px solid #3a3a3a;
+    cursor: pointer;
+}
+.bottom-events-news .events-news-menu ul li:hover{
+    background-color: #3a3a3a;
+}
+.bottom-events-news .events-news-menu ul li a:hover{
+    color: var(--main-color);
+}

@@ -1,0 +1,47 @@
+.all-programs{
+    margin: 30px 0;
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+.all-programs .program-item{
+    flex: 1;
+    background: #edefe9;
+    background-clip: border-box;
+    border-radius: 0.25rem;
+    flex-basis: calc(25% - 1rem);
+    margin: 0.5rem 0.25rem;
+    padding: 1.5em 2em;
+    word-wrap: break-word;
+}
+.program-item h2.program-title{
+    font-family: 'museo500';
+    font-weight: bold;
+    padding-bottom: 10px;
+    font-size: 1.5rem;
+}
+.program-item p.program-text{
+    text-align: justify;
+}
+.program-item a.button{
+    background-color: var(--main-color);
+    border-radius: 8px;
+    -webkit-box-shadow: 2px 3px 4px 0 rgba(0,0,0,0.24);
+    -moz-box-shadow: 2px 3px 4px 0 rgba(0,0,0,0.24);
+    box-shadow: 2px 3px 4px 0 rgba(0,0,0,0.24);
+    color: #fff !important;
+    display: inline-block;
+    font-size: 0.9em;
+    font-weight: bold;
+    line-height: 1.25em;
+    margin-top: 0.75rem;
+    padding: 0.625em 2.153em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+a.button sup{
+    text-transform: none;
+}
+.program-item a.button:hover{
+    background-color: var(--main-color-lourd);
+}
