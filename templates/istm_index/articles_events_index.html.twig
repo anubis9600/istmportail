@@ -3,23 +3,25 @@
 {% block title %}
   Actualités - ISTM Uvira
 {% endblock %}
-{% block events_news %} 
+{% block events_news %}
   <div class="header-events-news">
     <div class="container">
       <div class="events-news-title flex">
-        <h1><a href="">Actualités</a> et <a href="">Evénements</a></h1>
+        <h1>
+          <a href="">Actualités</a> et <a href="">Evénements</a>
+        </h1>
       </div>
     </div>
   </div>
   <div class="bottom-events-news">
     <div class="container">
       <div class="events-news-menu">
-      <ul class="flex">
-        <li><a href=""><i class="fa-solid fa-house"></i></a></li>
-        <li><a href="">Nouvelles</a></li>
-        <li><a href="">Événements</a></li>
-        <li><a href="">Nous joindre</a></li>
-      </ul>
+        <ul class="flex">
+          <li><a href=""><i class="fa-solid fa-house"></i></a></li>
+          <li><a href="">Nouvelles</a></li>
+          <li><a href="">Événements</a></li>
+          <li><a href="">Nous joindre</a></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -28,10 +30,52 @@
   <div class="container">
     <div class="news-events-container">
       <div class="last-news">
-        <h3>Dernieres nouvelles</h3>
+        <h3>
+          Dernieres nouvelles
+        </h3>
+        <ul class="all-last-news flex">
+          {% for article in articles|slice(- 3)|reverse %}
+            <li class="last-news-item">
+              <img src={{ article.imageUrl }} alt="" />
+              <div class="last-news-text">
+                <div class="last-news-date">
+                  {{ article.createdAt | date("d/m/Y") }}
+                </div>
+                <a href="" class="last-news-title">
+                 {{ article.title }}
+                </a>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
       </div>
       <div class="last-events">
-        <h3>Derniers Evenements</h3>
+        <h3>
+          Derniers Événements
+        </h3>
+        <div class="all-calendar-items flex">
+      {% for event in events|slice(-4)|reverse %}
+        <div class="calendar-item flex">
+          <div class="calendar-item-right flex">
+            <div class="day">
+              {{ event.startDate | date("d") }}
+            </div>
+            <div class="month">
+              {{ event.startDate | date("m") }}
+            </div>
+          </div>
+          <div class="calendar-item-left flex">
+            <div class="date-complet">
+              {{ event.startDate | date("d/m/Y") }}
+            </div>
+            <div class="heure-complet">
+              {{ event.endDate | date("d/m/Y") }}
+            </div>
+            <a href="" class="event-title">{{ event.title }}</a>
+          </div>
+        </div>
+      {% endfor %}
+        </div>
       </div>
     </div>
   </div>

@@ -52,3 +52,34 @@
 .bottom-events-news .events-news-menu ul li a:hover{
     color: var(--main-color);
 }
+.news-events-container h3{
+    font-family: 'Museo500';
+    padding: 20px 0;
+}
+ul.all-last-news{
+    width: 90%;
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+ul.all-last-news li.last-news-item{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+ul.all-last-news li.last-news-item img{
+    width: 100%;
+}
+li.last-news-item .last-news-date{
+    color: #4a4a4a;
+    font-weight: bold;
+}
+li.last-news-item a.last-news-title{
+    color: var(--main-color);
+    font-family: 'Museo500';
+    font-size: 1.2rem;
+    text-decoration: underline;
+}
+li.last-news-item a.last-news-title:hover{
+    text-decoration: none;
+}

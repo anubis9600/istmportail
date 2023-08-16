@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Article;
+use App\Entity\Event;
 use App\Entity\Profile;
 use App\Entity\User;
 use EsperoSoft\Faker\Faker;
@@ -41,6 +42,26 @@ class IstmAppFixtures extends Fixture
             $article->setAuthor($users[rand(0, count($users)-1)]);
             $manager->persist($article);
         }
+
+        $events = [];
+        for ($i=0; $i < 2; $i++) {
+            $event = (new Event())->setStartDate($faker->dateTimeImmutable())
+                                    ->setEndDate($faker->dateTimeImmutable())
+                                    ->setTitle($faker->title())
+                                    ->setContent($faker->text(10, 100));
+            $events[] = $event;
+            $manager->persist($event);
+        }
+
+        $events = [];
+        for ($i=0; $i < 2; $i++) {
+            $event = (new Event())->setStartDate($faker->dateTimeImmutable())
+                                    ->setTitle($faker->title())
+                                    ->setContent($faker->text(10, 100));
+            $events[] = $event;
+            $manager->persist($event);
+        }
+
         $manager->flush();
     }
 }

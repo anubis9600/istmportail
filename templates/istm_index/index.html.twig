@@ -158,81 +158,28 @@
       </h1>
       <div class="all-news-item flex">
         <div class="top-news flex">
+        {% for article in articles|slice(-2)|reverse %}
           <a href="" class="news-item">
-              <img src="/_assets/images/articles/1.jpg" alt="" />
+              <img src={{ article.imageUrl }} alt="" />
               <div class="news-legende">
                 <div class="author">
                   <div class="author-avatar">
-                    <img src="/_assets/images/profiles/avatar.jfif" alt="">
+                    <img src={{ article.author.profile.picture }} alt="">
                   </div>
-                  <h4 class="author-name">Olivier RUKABO</h4>
+                  <div class="ac flex">
+                    <h4 class="author-name">{{ article.author.fullName }}</h4>
+                    <div class="createdat">{{ article.createdAt | date("d/m/Y")  }}</div>
+                  </div>
                 </div>
                 <h2 class="news-title">
-                  L'herbier : quand la botanique se met à l'ère numérique, mais il maitrise pas son domaine c'est pourquoi
+                  {{ article.title }}
                 </h2>
               </div>
           </a>
-          <a href="" class="news-item">
-              <img src="/_assets/images/articles/1.jpg" alt="" />
-              <div class="news-legende">
-                <div class="author">
-                  <div class="author-avatar">
-                  <img src="/_assets/images/profiles/avatar.jfif" alt="">
-                  </div>
-                  <h4 class="author-name">Olivier RUKABO</h4>
-                </div>
-                <h2 class="news-title">
-                  L'herbier : quand la botanique se met à l'ère numérique
-                </h2>
-              </div>
-          </a>
-        </div>
-        <div class="bottom-news flex">
-          <a href="" class="news-item">
-                <img src="/_assets/images/articles/1.jpg" alt="" />
-                <div class="news-legende">
-                  <div class="author">
-                    <div class="author-avatar">
-                      <img src="/_assets/images/profiles/avatar.jfif" alt="">
-                    </div>
-                    <h4 class="author-name">Olivier RUKABO</h4>
-                  </div>
-                  <h2 class="news-title">
-                    L'herbier : quand la botanique se met à l'ère numérique, mais il maitrise pas son domaine c'est pourquoi
-                  </h2>
-                </div>
-            </a>
-          <a href="" class="news-item">
-                <img src="/_assets/images/articles/1.jpg" alt="" />
-                <div class="news-legende">
-                  <div class="author">
-                    <div class="author-avatar">
-                      <img src="/_assets/images/profiles/avatar.jfif" alt="">
-                    </div>
-                    <h4 class="author-name">Olivier RUKABO</h4>
-                  </div>
-                  <h2 class="news-title">
-                    L'herbier : quand la botanique se met à l'ère numérique, mais il maitrise pas son domaine c'est pourquoi
-                  </h2>
-                </div>
-            </a>
-          <a href="" class="news-item">
-                <img src="/_assets/images/articles/1.jpg" alt="" />
-                <div class="news-legende">
-                  <div class="author">
-                    <div class="author-avatar">
-                      <img src="/_assets/images/profiles/avatar.jfif" alt="">
-                    </div>
-                    <h4 class="author-name">Olivier RUKABO</h4>
-                  </div>
-                  <h2 class="news-title">
-                    L'herbier : quand la botanique se met à l'ère numérique, mais il maitrise pas son domaine c'est pourquoi
-                  </h2>
-                </div>
-            </a>
+        {% endfor %}
         </div>
     </div>
-          <div class="btn-donnee-actu">
+      <div class="btn-donnee-actu">
         <a href="" class="bouton-transparent-large">
           Voir toutes les actualités
         </a>
@@ -245,68 +192,27 @@
     </h1>
     <div class="container">
       <div class="all-calendar-items flex">
+      {% for event in events|slice(-3)|reverse %}
         <div class="calendar-item flex">
           <div class="calendar-item-right flex">
             <div class="day">
-              08
+              {{ event.startDate | date("d") }}
             </div>
             <div class="month">
-              Aout
+              {{ event.startDate | date("m") }}
             </div>
           </div>
           <div class="calendar-item-left flex">
             <div class="date-complet">
-              8 Aout 2023
+              {{ event.startDate | date("d/m/Y") }}
             </div>
             <div class="heure-complet">
-              12 h à 13 h
+              {{ event.endDate | date("d/m/Y") }}
             </div>
-            <a href="" class="event-title">Kiosque mobilité</a>
+            <a href="" class="event-title">{{ event.title }}</a>
           </div>
         </div>
-        <div class="calendar-item flex">
-          <div class="calendar-item-right flex">
-            <div class="day">
-              11
-            </div>
-            <div class="month">
-              Sept
-            </div>
-          </div>
-          <div class="calendar-item-left flex">
-            <div class="date-complet">
-              11 Septembre 2023
-            </div>
-            <div class="heure-complet">
-              12 h à 13 h
-            </div>
-            <a href="" class="event-title">
-              Initiation à la méditation | atelier de groupe
-            </a>
-          </div>
-        </div>
-        <div class="calendar-item flex">
-          <div class="calendar-item-right flex">
-            <div class="day">
-              12
-            </div>
-            <div class="month">
-              Sept
-            </div>
-          </div>
-          <div class="calendar-item-left flex">
-            <div class="date-complet">
-              12 septembre 2023
-            </div>
-            <div class="heure-complet">
-              12 h à 13 h
-            </div>
-            <a href="" class="event-title">
-              Webinaire gratuit - Mieux gérer le stress et la pression au
-              travail
-            </a>
-          </div>
-        </div>
+      {% endfor %}
       </div>
     </div>
     <div class="btn-donnee-chiffre">

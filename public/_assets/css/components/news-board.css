@@ -42,6 +42,14 @@ h2.news-title{
     color: var(--main-color);
     transition: 0.2s;
 }
+.author .ac{
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+}
+.ac .createdat{
+    color: #737373;
+}
 .bottom-news{
     width: 100%;
     gap: 10px;
