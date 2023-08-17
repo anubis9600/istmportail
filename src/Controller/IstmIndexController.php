@@ -36,7 +36,7 @@ class IstmIndexController extends AbstractController
         ]);
     }
 
-    #[Route('/nouvelle/{slug}', name: 'app_single_news')]
+    #[Route('/actualites_evenements/nouvelle/{slug}', name: 'app_single_news')]
     public function single_news(ArticleRepository $articleRepository, $slug): Response
     {
         $article = $articleRepository->findOneBySlug($slug);
@@ -46,7 +46,19 @@ class IstmIndexController extends AbstractController
             'article' => $article,
         ]);
     }
-    #[Route('/evenement/{slug}', name: 'app_single_event')]
+
+    #[Route('/actualites_evenements/nouvelle/', name: 'app_all_news')]
+    public function all_news(ArticleRepository $articleRepository): Response
+    {
+        $articles = $articleRepository->findAll();
+
+        return $this->render('istm_index/all_news.html.twig', [
+            'controller_name' => 'IstmIndexController',
+            'articles' => $articles,
+        ]);
+    }
+
+    #[Route('/actualites_evenements/evenement/{slug}', name: 'app_single_event')]
     public function single_event(EventRepository $eventRepository, $slug): Response
     {
         $event = $eventRepository->findOneBySlug($slug);

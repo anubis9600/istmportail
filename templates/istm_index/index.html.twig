@@ -159,7 +159,7 @@
       <div class="all-news-item flex">
         <div class="top-news flex">
         {% for article in articles|slice(-2)|reverse %}
-          <a href="nouvelle/{{ article.slug }}" class="news-item">
+          <a href="/actualites_evenements/nouvelle/{{ article.slug }}" class="news-item">
               <img src={{ article.imageUrl }} alt="" />
               <div class="news-legende">
                 <div class="author">
@@ -172,7 +172,7 @@
                   </div>
                 </div>
                 <h2 class="news-title">
-                  {{ article.title }}
+                  <h3>{{ article.title }}</h3>
                 </h2>
               </div>
           </a>
@@ -209,7 +209,7 @@
             <div class="heure-complet">
               {{ event.endDate | date("d/m/Y") }}
             </div>
-            <a href="/evenement/{{ event.slug }}" class="event-title">{{ event.title }}</a>
+            <a href="/actualites_evenements/evenement/{{ event.slug }}" class="event-title">{{ event.title }}</a>
           </div>
         </div>
       {% endfor %}
