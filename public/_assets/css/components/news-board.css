@@ -29,8 +29,9 @@
 .top-news a.news-item{
     flex: 1;
 }
-a.news-item img{
+a.news-item>img{
     width: 100%;
+    height: 350px;
 }
 .news-item{
     text-decoration: none;

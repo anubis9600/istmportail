@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\EventRepository;
+use Cocur\Slugify\Slugify;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EventRepository;
 
 #[ORM\Entity(repositoryClass: EventRepository::class)]
 class Event
@@ -22,6 +23,9 @@ class Event
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
+
+    #[ORM\Column(length: 255, nullable: false)]
+    private ?string $slug = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
@@ -63,10 +67,20 @@ class Event
     public function setTitle(string $title): static
     {
         $this->title = $title;
+        $this->setSlug((new Slugify())->slugify($title));
+        return $this;
+    }
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
-
     public function getContent(): ?string
     {
         return $this->content;

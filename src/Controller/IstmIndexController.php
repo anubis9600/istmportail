@@ -35,4 +35,25 @@ class IstmIndexController extends AbstractController
             'events'  => $events,
         ]);
     }
+
+    #[Route('/nouvelle/{slug}', name: 'app_single_news')]
+    public function single_news(ArticleRepository $articleRepository, $slug): Response
+    {
+        $article = $articleRepository->findOneBySlug($slug);
+
+        return $this->render('istm_index/single_news.html.twig', [
+            'controller_name' => 'IstmIndexController',
+            'article' => $article,
+        ]);
+    }
+    #[Route('/evenement/{slug}', name: 'app_single_event')]
+    public function single_event(EventRepository $eventRepository, $slug): Response
+    {
+        $event = $eventRepository->findOneBySlug($slug);
+
+        return $this->render('istm_index/single_event.html.twig', [
+            'controller_name' => 'IstmIndexController',
+            'event' => $event,
+        ]);
+    }
 }

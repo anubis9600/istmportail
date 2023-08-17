@@ -1,31 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends '/istm_index/base_en.html.twig' %}
 
 {% block title %}
   Actualités - ISTM Uvira
 {% endblock %}
-{% block events_news %}
-  <div class="header-events-news">
-    <div class="container">
-      <div class="events-news-title flex">
-        <h1>
-          <a href="">Actualités</a> et <a href="">Evénements</a>
-        </h1>
-      </div>
-    </div>
-  </div>
-  <div class="bottom-events-news">
-    <div class="container">
-      <div class="events-news-menu">
-        <ul class="flex">
-          <li><a href=""><i class="fa-solid fa-house"></i></a></li>
-          <li><a href="">Nouvelles</a></li>
-          <li><a href="">Événements</a></li>
-          <li><a href="">Nous joindre</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-{% endblock %}
+
 {% block body %}
   <div class="container">
     <div class="news-events-container">
@@ -39,9 +17,9 @@
               <img src={{ article.imageUrl }} alt="" />
               <div class="last-news-text">
                 <div class="last-news-date">
-                  {{ article.createdAt | date("d/m/Y") }}
+                  {{ article.fromNow }}
                 </div>
-                <a href="" class="last-news-title">
+                <a href="nouvelle/{{ article.slug }}" class="last-news-title">
                  {{ article.title }}
                 </a>
               </div>
@@ -68,10 +46,12 @@
             <div class="date-complet">
               {{ event.startDate | date("d/m/Y") }}
             </div>
+            {% if event.endDate is not empty %}
             <div class="heure-complet">
               {{ event.endDate | date("d/m/Y") }}
             </div>
-            <a href="" class="event-title">{{ event.title }}</a>
+            {% endif %}
+            <a href="/evenement/{{ event.slug }}" class="event-title">{{ event.title }}</a>
           </div>
         </div>
       {% endfor %}

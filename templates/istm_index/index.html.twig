@@ -159,7 +159,7 @@
       <div class="all-news-item flex">
         <div class="top-news flex">
         {% for article in articles|slice(-2)|reverse %}
-          <a href="" class="news-item">
+          <a href="nouvelle/{{ article.slug }}" class="news-item">
               <img src={{ article.imageUrl }} alt="" />
               <div class="news-legende">
                 <div class="author">
@@ -168,7 +168,7 @@
                   </div>
                   <div class="ac flex">
                     <h4 class="author-name">{{ article.author.fullName }}</h4>
-                    <div class="createdat">{{ article.createdAt | date("d/m/Y")  }}</div>
+                    <div class="createdat"> <i class="fa-regular fa-calendar-days"></i> {{ article.fromNow }}</div>
                   </div>
                 </div>
                 <h2 class="news-title">
@@ -209,7 +209,7 @@
             <div class="heure-complet">
               {{ event.endDate | date("d/m/Y") }}
             </div>
-            <a href="" class="event-title">{{ event.title }}</a>
+            <a href="/evenement/{{ event.slug }}" class="event-title">{{ event.title }}</a>
           </div>
         </div>
       {% endfor %}
