@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\ArticleRepository;
 use App\Repository\EventRepository;
+use App\Repository\StudentBookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -66,6 +67,17 @@ class IstmIndexController extends AbstractController
         return $this->render('istm_index/single_event.html.twig', [
             'controller_name' => 'IstmIndexController',
             'event' => $event,
+        ]);
+    }
+
+    #[Route('/recherches', name: 'books-app')]
+    public function books_index(StudentBookRepository $studentBookRepository): Response
+    {
+        $studentsBooks = $studentBookRepository->findAll();
+
+        return $this->render('istm_index/books/books_index.html.twig', [
+            'controller_name' => 'IstmIndexController',
+            'studentsBooks' => $studentsBooks
         ]);
     }
 }

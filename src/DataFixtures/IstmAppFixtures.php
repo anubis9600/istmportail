@@ -4,7 +4,9 @@ namespace App\DataFixtures;
 
 use App\Entity\Article;
 use App\Entity\Event;
+use App\Entity\Filiere;
 use App\Entity\Profile;
+use App\Entity\StudentBook;
 use App\Entity\User;
 use EsperoSoft\Faker\Faker;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -35,7 +37,7 @@ class IstmAppFixtures extends Fixture
         $articles = [];
         for ($i=0; $i < 10; $i++) {
             $article = (new Article())->setTitle($faker->title())
-                                    ->setContent($faker->text(30, 150))
+                                    ->setContent($faker->text(10, 60))
                                     ->setImageUrl($faker->image())
                                     ->setCreatedAt($faker->dateTimeImmutable());
             $articles[] = $article;
@@ -57,9 +59,31 @@ class IstmAppFixtures extends Fixture
         for ($i=0; $i < 2; $i++) {
             $event = (new Event())->setStartDate($faker->dateTimeImmutable())
                                     ->setTitle($faker->title())
-                                    ->setContent($faker->text(10, 100));
+                                    ->setContent($faker->text(10, 50));
             $events[] = $event;
             $manager->persist($event);
+        }
+        $filieres = [];
+        $my_array = array("Soins generaux","Pediatrie", "Sage femme", "Sante communautaire", "Technique de laboratoire", "Technique pharmaceutique");
+        foreach ($my_array as $value) {
+            $filiere = (new Filiere())->setTitle($value)
+                                    ->setDescription($faker->text(5, 10));
+            
+            $filieres[] = $filiere;
+            $manager->persist($filiere);
+        }
+
+        $studentbooks = [];
+        for ($i=0; $i < 25; $i++) {
+            $studentbook = (new StudentBook())->setTitle($faker->title())
+                                                ->setDescription($faker->text(10, 30))
+                                                ->setStudentFullName($faker->full_name())
+                                                ->setYear($faker->dateTime())
+                                                ->setFileUrl("https://drive.google.com/file/d/1eubvbL5ZXGTH0WmA6d6sywwI1uIAy37f/view")
+                                                ->setFiliere($filiere);
+        
+        $studentbooks[] = $studentbook;
+        $manager->persist($studentbook);
         }
 
         $manager->flush();

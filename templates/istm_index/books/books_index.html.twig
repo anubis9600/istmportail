@@ -1,0 +1,50 @@
+{% extends '/istm_index/books/base_books.html.twig' %}
+
+{% block title %}
+  Recherches - ISTM Uvira
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <div class="news-events-container">
+      <div class="last-news">
+        <h3>
+          Derniers Travaux des Etudiants
+        </h3>
+        <ul class='list-inline flex'>
+          {% for book in studentsBooks|slice(-4)|reverse %}
+            <li class='book'>
+              <div class="book-content flex">
+              <p>{{ book.studentFullName }}</p>
+              <h5>{{ book.title }}</h5>
+              <div class="view_download flex">
+                <a href="{{ book.fileUrl }}" target="_blank"><i title="Visionner ou Télécharger le document" class="fa-solid fa-file-arrow-down"></i></a>
+              </div>
+              <h6>Année {{ book.year | date("Y") }}</h6>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="last-events">
+        <h3>
+          Derniers publications des professeurs
+        </h3>
+        <ul class='list-inline flex'>
+        {% for book in studentsBooks|slice(-4)|reverse %}
+          <li class="book professor">
+            <div class="book-content flex">
+            <p>{{ book.studentFullName }}</p>
+            <h5>{{ book.title }}</h5>
+            <div class="view_download flex">
+              <a href="{{ book.fileUrl }}" target="_blank"><i title="Visionner ou Télécharger le document" class="fa-solid fa-file-arrow-down"></i></a>
+            </div>
+            <h6>Année {{ book.year | date("Y") }}</h6>
+            </div>
+          </li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}
