@@ -1,6 +1,7 @@
 window.onload = () =>{
-    let nav = document.querySelector('div.menu-entrance')
-    // var nav = document.getElementById('menu')
-    // var nav = document.getElementsByClassName('menu-entrance')
-    nav.style.display = "none"
+    let myDiv = document.querySelector('div.menu-entrance')
+    let icons = document.getElementById('up')
+    icons.style.display = "none"
+    myDiv.style.display = "none"
+    setupListeners()
 }

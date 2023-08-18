@@ -36,6 +36,7 @@ ul.nav-bar li ul{
 .top-header .menu i{
     color: white;
 }
+
 .top-header .menu{
     display: none;
 }
@@ -126,15 +127,13 @@ header .nav-bar li a:hover{
 }
 .item-menu .icon-menu:hover{
     background-color: var(--main-color);
+    cursor: pointer;
 }
 .item-menu .logo-title{
     height: 100%;
     border-right: 1px solid #fff;
     padding: 0 10px;
     align-items: center;
-}
-.item-menu .icon-menu:hover{
-    cursor: pointer;
 }
 .item-menu .logo-title h1{
     font-size: 1.8rem;
