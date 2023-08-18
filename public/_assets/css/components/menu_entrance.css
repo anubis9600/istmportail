@@ -4,9 +4,10 @@
     height: 100vh;
     background-color: var(--main-color-lourd);
     z-index: 999;
-    top: -10000px;
+    top: -100px;
     top: 70px;
     padding: 10px;
+    transition: 1s;
 }
 .menu-entrance h3{
     color: white;

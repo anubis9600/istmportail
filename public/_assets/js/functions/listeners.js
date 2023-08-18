@@ -4,6 +4,8 @@ let myButton = document.querySelector('.item-menu .icon-menu')
 let iconDown = document.getElementById('down')
 let iconUp = document.getElementById('up')
 
+let monList = document.querySelector('div.menu-entrance ul li')
+
 var listenerFunctions = {
     manageMenu: (event)=>{
         if (myDiv.style.display == "none" && iconDown.style.display == "block" && iconUp.style.display == "none"){
@@ -15,10 +17,13 @@ var listenerFunctions = {
             iconDown.style.display = "block"
             iconUp.style.display = "none"
         }
-        
+    },
+    manageList: (event)=>{
+        myDiv.style.display = "none"
     }
 }
 
 var setupListeners = () =>{
     myButton.onmousedown = listenerFunctions.manageMenu
+    monList.onmousedown = listenerFunctions.manageList
 }
