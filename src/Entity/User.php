@@ -4,35 +4,39 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
     private ?string $fullName = null;
 
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $fonction = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $email = null;
-
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $telephone = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $password = null;
+    #[ORM\Column(length: 180, unique: true)]
+    private ?string $email = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $role = null;
+    #[ORM\Column]
+    private array $roles = [];
+
+    /**
+     * @var string The hashed password
+     */
+    #[ORM\Column]
+    private ?string $password = null;
 
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Article::class)]
     private Collection $articles;
@@ -50,30 +54,6 @@ class User
         return $this->id;
     }
 
-    public function getFullName(): ?string
-    {
-        return $this->fullName;
-    }
-
-    public function setFullName(string $fullName): static
-    {
-        $this->fullName = $fullName;
-
-        return $this;
-    }
-
-    public function getFonction(): ?string
-    {
-        return $this->fonction;
-    }
-
-    public function setFonction(?string $fonction): static
-    {
-        $this->fonction = $fonction;
-
-        return $this;
-    }
-
     public function getEmail(): ?string
     {
         return $this->email;
@@ -86,19 +66,39 @@ class User
         return $this;
     }
 
-    public function getTelephone(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
     {
-        return $this->telephone;
+        return (string) $this->email;
     }
 
-    public function setTelephone(?string $telephone): static
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        $this->telephone = $telephone;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function getPassword(): ?string
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
         return $this->password;
     }
@@ -110,24 +110,116 @@ class User
         return $this;
     }
 
-    public function getRole(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
     {
-        return $this->role;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
-    public function setRole(string $role): static
+    /**
+     * Get the value of profile
+     */ 
+    public function getProfile()
     {
-        $this->role = $role;
+        return $this->profile;
+    }
+
+    /**
+     * Set the value of profile
+     *
+     * @return  self
+     */ 
+    public function setProfile($profile)
+    {
+        $this->profile = $profile;
 
         return $this;
     }
 
     /**
+     * Get the value of articles
+     */ 
+    /**
      * @return Collection<int, Article>
      */
-    public function getArticles(): Collection
+    public function getArticles()
     {
         return $this->articles;
+    }
+
+    /**
+     * Set the value of articles
+     *
+     * @return  self
+     */ 
+    public function setArticles($articles)
+    {
+        $this->articles = $articles;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of telephone
+     */ 
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * Set the value of telephone
+     *
+     * @return  self
+     */ 
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of fonction
+     */ 
+    public function getFonction()
+    {
+        return $this->fonction;
+    }
+
+    /**
+     * Set the value of fonction
+     *
+     * @return  self
+     */ 
+    public function setFonction($fonction)
+    {
+        $this->fonction = $fonction;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of fullName
+     */ 
+    public function getFullName()
+    {
+        return $this->fullName;
+    }
+
+    /**
+     * Set the value of fullName
+     *
+     * @return  self
+     */ 
+    public function setFullName($fullName)
+    {
+        $this->fullName = $fullName;
+
+        return $this;
     }
 
     public function addArticle(Article $article): static
@@ -148,23 +240,6 @@ class User
                 $article->setAuthor(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getProfile(): ?Profile
-    {
-        return $this->profile;
-    }
-
-    public function setProfile(Profile $profile): static
-    {
-        // set the owning side of the relation if necessary
-        if ($profile->getUser() !== $this) {
-            $profile->setUser($this);
-        }
-
-        $this->profile = $profile;
 
         return $this;
     }

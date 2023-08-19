@@ -10,6 +10,7 @@ var listenerFunctions = {
     manageMenu: (event)=>{
         if (myDiv.style.display == "none" && iconDown.style.display == "block" && iconUp.style.display == "none"){
             myDiv.style.display = "block"
+            myDiv.style.top = "70px"
             iconDown.style.display = "none"
             iconUp.style.display = "block"
         }else{

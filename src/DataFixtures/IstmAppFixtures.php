@@ -23,8 +23,7 @@ class IstmAppFixtures extends Fixture
             $user = (new User())->setFullName($faker->full_name())
                                 ->setEmail($faker->email())
                                 ->setPassword(sha1("olivier"))
-                                ->setFonction($faker->country())
-                                ->setRole(rand(0, 1) ? 'Admin' : 'User');
+                                ->setFonction($faker->country());
             $profile = (new Profile())->setPicture($faker->image())
                                     ->setDescription($faker->description(60))
                                     ->setCreatedAt($faker->dateTimeImmutable());
