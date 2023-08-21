@@ -28,7 +28,7 @@ class IstmAppFixtures extends Fixture
                                     ->setDescription($faker->description(60))
                                     ->setCreatedAt($faker->dateTimeImmutable());
             $users[] = $user;
-            $user->setProfile($profile);
+            $profile->setUser($user); 
             $manager->persist($profile);
             $manager->persist($user);
         }
@@ -63,7 +63,7 @@ class IstmAppFixtures extends Fixture
             $manager->persist($event);
         }
         $filieres = [];
-        $my_array = array("Soins generaux","Pediatrie", "Sage femme", "Sante communautaire", "Technique de laboratoire", "Technique pharmaceutique");
+        $my_array = array("Sciences infirmieres", "Sage femme", "Sante communautaire", "Technique de laboratoire", "Technique pharmaceutique", "Gestion des organisations de sante", "Sciences des aliments (Nutrition diététique)", "EASI: Enseignement et administration en soinsoins infirmiers", );
         foreach ($my_array as $value) {
             $filiere = (new Filiere())->setTitle($value)
                                     ->setDescription($faker->text(5, 10));

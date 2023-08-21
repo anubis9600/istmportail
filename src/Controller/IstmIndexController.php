@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\ArticleRepository;
 use App\Repository\EventRepository;
+use App\Repository\FiliereRepository;
 use App\Repository\StudentBookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -78,6 +79,17 @@ class IstmIndexController extends AbstractController
         return $this->render('istm_index/books/books_index.html.twig', [
             'controller_name' => 'IstmIndexController',
             'studentsBooks' => $studentsBooks
+        ]);
+    }
+
+    #[Route('/filieres', name: 'domaines_admissions-app')]
+    public function domainesadmissions_index(FiliereRepository $filiereRepository): Response
+    {
+        $filieres = $filiereRepository->findAll();
+
+        return $this->render('istm_index/filieres/filieres_index.html.twig', [
+            'controller_name' => 'IstmIndexController',
+            'filieres' => $filieres
         ]);
     }
 }

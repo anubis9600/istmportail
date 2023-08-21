@@ -1,0 +1,63 @@
+{% extends '/istm_index/filieres/base_filieres.html.twig' %}
+
+{% block title %}
+  Domaines d'Etudes - ISTM Uvira
+{% endblock %}
+
+{% block body %}
+  <div class="all-filieres">
+    <div class="container flex">
+      <div class="filieres-left">
+        <ul>
+          {% for filiere in filieres %}
+            <li><a href="">{{ filiere.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="filieres-right">
+        <div class="filieres-right-text">
+          <h1>
+            Domaines d'études
+          </h1>
+          <h6>
+            Vous cherchez le meilleur programme d'études selon vos intérêts?
+          </h6>
+          <p>
+            Explorez nos domaines d'études et découvrez tous les programmes qui
+            s'y rattachent. Du baccalauréat au Licence, en passant par le, vous
+            trouverez votre voie à l'Institut Supérieur des Techniques
+            Médicales!
+          </p>
+          <div class="filieres-right-items flex">
+            {% for filiere in filieres %}
+              <div class="card" style="width: 16rem;">
+                <img class="card-img-top"
+                  src="/_assets/images/articles/filiere.jpg"
+                  alt="Card image cap" />
+                <div class="card-body">
+                  <h5 class="card-title">
+                    {{ filiere.title }}
+                  </h5>
+                  <a href="#" class="button">Explorer</a>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="filieres-center">
+        <h1>
+          Admission
+        </h1>
+        <h3>
+          Vous avez fait votre choix
+        </h3>
+        <p>
+          Découvrez maintenant comment déposer votre dossier de demande
+          d'Inscription
+        </p>
+        <a href="" class="button">Admission</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -22,7 +22,9 @@
 .program-item p.program-text{
     text-align: justify;
 }
-.program-item a.button{
+.program-item a.button,
+.card-body a.button,
+.filieres-center a.button{
     background-color: var(--main-color);
     border-radius: 8px;
     -webkit-box-shadow: 2px 3px 4px 0 rgba(0,0,0,0.24);
@@ -42,6 +44,8 @@
 a.button sup{
     text-transform: none;
 }
-.program-item a.button:hover{
+.program-item a.button:hover,
+.card-body a.button:hover,
+.filieres-center a.button:hover{
     background-color: var(--main-color-lourd);
 }

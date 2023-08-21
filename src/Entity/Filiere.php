@@ -21,12 +21,19 @@ class Filiere
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
+    #[ORM\Column(length: 5, nullable: true)]
+    private ?int $cycle = null;
+
     #[ORM\OneToMany(mappedBy: 'filiere', targetEntity: StudentBook::class)]
     private Collection $studentBooks;
+
+    #[ORM\OneToMany(mappedBy: 'filiere', targetEntity: Orientation::class)]
+    private Collection $orientations;
 
     public function __construct()
     {
         $this->studentBooks = new ArrayCollection();
+        $this->orientations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -46,6 +53,17 @@ class Filiere
         return $this;
     }
 
+    public function setCycle(): ?int
+    {
+        return $this->cycle;
+    }
+
+    public function getCycle(?int $cycle): static
+    {
+        $this->cycle = $cycle;
+
+        return $this;
+    }
     public function getDescription(): ?string
     {
         return $this->description;
@@ -82,6 +100,36 @@ class Filiere
             // set the owning side to null (unless already changed)
             if ($studentBook->getFiliere() === $this) {
                 $studentBook->setFiliere(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Orientation>
+     */
+    public function getOrientations(): Collection
+    {
+        return $this->orientations;
+    }
+
+    public function addOrientation(Orientation $orientation): static
+    {
+        if (!$this->orientations->contains($orientation)) {
+            $this->orientations->add($orientation);
+            $orientation->setFiliere($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrientation(Orientation $orientation): static
+    {
+        if ($this->orientations->removeElement($orientation)) {
+            // set the owning side to null (unless already changed)
+            if ($orientation->getFiliere() === $this) {
+                $orientation->setFiliere(null);
             }
         }
 
