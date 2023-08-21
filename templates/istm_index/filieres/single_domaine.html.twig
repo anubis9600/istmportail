@@ -1,0 +1,28 @@
+{% extends '/istm_index/filieres/base_filieres.html.twig' %}
+
+{% block title %}
+  Evenement - ISTM Uvira {{ filiere.title }}
+{% endblock %}
+
+{% block body %}
+  <div class="single-domaine">
+    <div class="container">
+      <div class="card mb-4">
+        <img class="card-img-top"
+          src="/_assets/images/articles/filiere.jpg"
+          alt="Card image cap" />
+        <div class="card-body">
+          <h5 class="card-title">
+            Filière de {{ filiere.title }}
+          </h5>
+          <p class="card-text">
+            {{ filiere.description }}
+          </p>
+          <p class="card-text">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

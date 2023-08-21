@@ -6,10 +6,10 @@
     filter: grayscale(50%);
     height: 400px;
 }
-.all-filieres{
+.all-filieres, .single-domaine{
     position: relative;
     top: -250px;
-    padding: 0 50px;
+    padding: 0 80px;
 }
 .all-filieres>.container{
     background-color: white;

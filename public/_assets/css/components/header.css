@@ -14,6 +14,14 @@ header{
     margin-right: auto;
     margin-left: auto;
 }
+.start-hour{
+    justify-content: center;
+    align-items: center;
+}
+.start-hour i{
+    color: white;
+    font-size: 1.3rem;
+}
 .separate-menu{
     display: flex;
     border-left: 1px solid #4a4a4a;

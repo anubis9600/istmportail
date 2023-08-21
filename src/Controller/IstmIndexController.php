@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\ArticleRepository;
 use App\Repository\EventRepository;
 use App\Repository\FiliereRepository;
+use App\Repository\OrientationRepository;
 use App\Repository\StudentBookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -90,6 +91,19 @@ class IstmIndexController extends AbstractController
         return $this->render('istm_index/filieres/filieres_index.html.twig', [
             'controller_name' => 'IstmIndexController',
             'filieres' => $filieres
+        ]);
+    }
+
+    #[Route('/filieres/{slug}', name: 'domaines_single-app')]
+    public function domainessingle_index(FiliereRepository $filiereRepository, OrientationRepository $orientationRepository, $slug): Response
+    {
+        $filiere = $filiereRepository->findOneBySlug($slug);
+        $orientations = $orientationRepository->findAll();
+
+        return $this->render('istm_index/filieres/single_domaine.html.twig', [
+            'controller_name' => 'IstmIndexController',
+            'filiere' => $filiere,
+            'orientations' => $orientations
         ]);
     }
 }

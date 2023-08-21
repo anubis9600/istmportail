@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\FiliereRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\FiliereRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: FiliereRepository::class)]
 class Filiere
@@ -17,6 +18,9 @@ class Filiere
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
@@ -49,6 +53,19 @@ class Filiere
     public function setTitle(string $title): static
     {
         $this->title = $title;
+
+        $this->setSlug((new Slugify())->slugify($title));
+
+        return $this;
+    }
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

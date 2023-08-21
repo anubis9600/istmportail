@@ -60,7 +60,13 @@
         </div>
         <div class="hours flex gap-10">
           <div class="start-hour"></div>
-          <div class="start-hour"></div>
+          <div class="start-hour flex">
+            {% if app.user %}
+              <a href="/logout"><i class="fa-solid fa-lock-open"></i></a>
+            {% else %}
+              <a href="/login"><i class="fa-solid fa-lock"></i></a>
+            {% endif %}
+          </div>
         </div>
       </div>
       <div class="container-header">
