@@ -72,15 +72,23 @@ a:hover {
     padding: 2px 5px;
 }
 .btn{
-    padding: 8px 10px;
-    font-size: 1rem;
+    background-color: var(--main-color);
+    border-radius: 8px;
+    -webkit-box-shadow: 2px 3px 4px 0 rgba(0,0,0,0.24);
+    -moz-box-shadow: 2px 3px 4px 0 rgba(0,0,0,0.24);
+    box-shadow: 2px 3px 4px 0 rgba(0,0,0,0.24);
+    color: #fff !important;
+    display: inline-block;
+    font-size: 0.9em;
+    font-weight: bold;
+    line-height: 1.25em;
+    margin-top: 0.75rem;
+    padding: 0.625em 2.153em;
+    text-align: center;
+    text-decoration: none;
     text-transform: uppercase;
-    color: white;
-    cursor: pointer;
-    border: none;
     width: 100%;
     box-shadow: 0 2px 10px #1d1d1d;
-    background: var(--main-gradient);
 }
 .mb-10{
     margin-bottom: 10px;

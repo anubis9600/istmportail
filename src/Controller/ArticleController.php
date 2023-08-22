@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Services\UploadFile;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +32,7 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/new', name: 'app_article_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, UploadFile $uploadFile): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
@@ -40,7 +41,12 @@ class ArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $article->setCreatedAt(new \DateTimeImmutable());
             $file = $form["imageFile"]->getData();
-            dd($file);
+
+            $file_url = $uploadFile->saveFile($file);
+            $article->setImageUrl($file_url);
+            $article->setAuthor($this->getUser());
+            dd($article);
+
             $entityManager->persist($article);
             $entityManager->flush();
 

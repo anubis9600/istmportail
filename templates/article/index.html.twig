@@ -45,19 +45,16 @@
             {{ article.title }}
           </td>
           <td>
-            {{ article.slug }}
-          </td>
-          <td>
             {{ article.content }}
           </td>
           <td>
             {{ article.imageUrl }}
           </td>
           <td>
-            {{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}
+            {{ article.createdAt ? article.createdAt|date('d/m/Y H:i:s') : '' }}
           </td>
           <td>
-            {{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}
+            {{ article.updatedAt ? article.updatedAt|date('d/m/Y H:i:s') : '' }}
           </td>
           <td>
             <a href="{{

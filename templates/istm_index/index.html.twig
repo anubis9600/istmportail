@@ -164,7 +164,11 @@
               <div class="news-legende">
                 <div class="author">
                   <div class="author-avatar">
+                  {% if article.author.profile.picture is defined %}
                     <img src={{ article.author.profile.picture }} alt="">
+                  {% else %}
+                    <img src="/_assets/images/profiles/avatar.jfif" alt="">
+                  {% endif %}
                   </div>
                   <div class="ac flex">
                     <h4 class="author-name">{{ article.author.fullName }}</h4>

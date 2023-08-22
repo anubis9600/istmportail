@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class ArticleType extends AbstractType
 {
@@ -36,7 +37,17 @@ class ArticleType extends AbstractType
                 'row_attr'=>['class'=>'form-group flex'],
                 'attr' =>[
                     'class'=>'flex-1'
-                ]
+                ],
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2048k',
+                        'maxSizeMessage' => 'Le fichier est trop volumineux (1173.64 kB). La taille maximale autorisée est de 1024 kB',
+                        'extensions' => [
+                            'jpg',
+                            'png'
+                        ],
+                        'mimeTypesMessage' => "Seul, les images sont permis",
+                    ])],
             ])
         ;
     }

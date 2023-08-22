@@ -22,7 +22,7 @@ class IstmAppFixtures extends Fixture
         for ($i=0; $i < 3; $i++) { 
             $user = (new User())->setFullName($faker->full_name())
                                 ->setEmail($faker->email())
-                                ->setPassword(sha1("olivier"))
+                                ->setPassword("olivier")
                                 ->setFonction($faker->country());
             $profile = (new Profile())->setPicture($faker->image())
                                     ->setDescription($faker->description(60))
