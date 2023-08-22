@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  Article index
+  Event index
 {% endblock %}
 
 {% block body %}
   <h1>
-    Article index
+    Event index
   </h1>
 
   <table class="table">
@@ -16,19 +16,19 @@
           Id
         </th>
         <th>
-          Titre
+          StartDate
         </th>
         <th>
-          Contenus
+          EndDate
         </th>
         <th>
-          ImageUrl
+          Title
         </th>
         <th>
-          CreatedAt
+          Slug
         </th>
         <th>
-          UpdatedAt
+          Content
         </th>
         <th>
           actions
@@ -36,35 +36,32 @@
       </tr>
     </thead>
     <tbody>
-      {% for article in articles %}
+      {% for event in events %}
         <tr>
           <td>
-            {{ article.id }}
+            {{ event.id }}
           </td>
           <td>
-            {{ article.title }}
+            {{ event.startDate ? event.startDate|date('Y-m-d H:i:s') : '' }}
           </td>
           <td>
-            {{ article.slug }}
+            {{ event.endDate ? event.endDate|date('Y-m-d H:i:s') : '' }}
           </td>
           <td>
-            {{ article.content }}
+            {{ event.title }}
           </td>
           <td>
-            {{ article.imageUrl }}
+            {{ event.slug }}
           </td>
           <td>
-            {{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}
-          </td>
-          <td>
-            {{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}
+            {{ event.content }}
           </td>
           <td>
             <a href="{{
               path(
-                'app_article_show',
+                'app_event_show',
                 {
-                  id: article.id
+                  id: event.id
                 }
               )
               }}">
@@ -72,9 +69,9 @@
             </a>
             <a href="{{
               path(
-                'app_article_edit',
+                'app_event_edit',
                 {
-                  id: article.id
+                  id: event.id
                 }
               )
               }}">
@@ -84,14 +81,13 @@
         </tr>
       {% else %}
         <tr>
-          <td colspan="8">
-            Vous n'avez pas encore publier d'article <a href="{{ path('app_article_new') }}">Créez
-              en ici</a>
+          <td colspan="7">
+            no records found
           </td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
 
-  <a href="{{ path('app_article_new') }}">Create new</a>
+  <a href="{{ path('app_event_new') }}">Create new</a>
 {% endblock %}

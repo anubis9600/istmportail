@@ -27,6 +27,7 @@ class Article
 
     #[ORM\Column(length: 255)]
     private ?string $imageUrl = null;
+    private ?string $imageFile = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
     #[ORM\JoinColumn(nullable: false)]
@@ -91,6 +92,17 @@ class Article
     public function setImageUrl(string $imageUrl): static
     {
         $this->imageUrl = $imageUrl;
+
+        return $this;
+    }
+    public function getImageFile(): ?string
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(string $imageFile): static
+    {
+        $this->imageFile = $imageFile;
 
         return $this;
     }
