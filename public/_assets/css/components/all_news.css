@@ -11,6 +11,10 @@
     border-bottom: 1px solid rgba(0,0,0,0.125);
     gap: 10px;
 }
+tbody.articles-table tr td.content{
+    height: 150px !important;
+    overflow: hidden;
+}
 .all-news-page .all-news-page-item img{
     width: 250px;
     height: 100%;

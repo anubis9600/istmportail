@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+  Administration - ISTM Uvira
+{% endblock %}
+{% block usersdetails %}    
+<div class="user-details">
+  <div class="user-avatar">
+    {% if app.user.profile.imageUrl is defined %}
+      <img src={{ app.user.profile.imageUrl }} alt="Image de: {{ app.user.fullName }}" />
+    {% else %}
+      <img src="/_assets/images/profiles/avatar.jfif" alt="">
+    {% endif %}
+  </div>
+      <div class="user-text">
+        <h3>{{ app.user.fullName }}</h3>
+        <p>
+            Vous avez publié {{ app.user.getArticles()|length }} article(s)
+        </p>
+        {% if app.user.telephone is not empty %}
+        <p>
+            <strong>Téléphone:</strong> {{ app.user.telephone }}
+        </p>
+        {% endif %}
+        {% if app.user.email is not empty %}
+        <p>
+          <strong>Adresse mail :</strong> {{ app.user.email }}
+        </p>
+        {% endif %}
+        {% if app.user.profile.description is defined %}
+        <p>
+          <strong>Petite description :</strong> {{ app.user.profile.description }}
+        </p>
+        {% endif %}
+      </div>
+</div>
+{% endblock %}

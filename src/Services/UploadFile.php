@@ -28,8 +28,7 @@ class UploadFile extends AbstractController {
         $file_url = $this->saveFile($file);
         try {
             unlink($this->getParameter('static_dir').$oldFile);
-        } catch (\Throwable $th) {
-        }
+        } catch (\Throwable $th) {}
         return $file_url;
     }
     public function removeFile($file_url){

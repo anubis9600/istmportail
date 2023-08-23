@@ -21,7 +21,11 @@
       <div class="right-items">
         <div class="top-single-item flex">
           <div class="author-details flex">
-          <div class="author-image" style="background-image: url({{ article.author.profile.picture }})"></div>
+          {% if article.author.profile.picture is defined %}
+            <div class="author-image" style="background-image: url({{ article.author.profile.picture }})"></div>
+          {% else %}
+            <div class="author-image" style="background-image: url(/_assets/images/profiles/avatar.jfif)"></div>
+          {% endif %}
           <a href="">{{ article.author.fullName }}</a>
         </div>
         <div class="ligne"></div>
@@ -31,7 +35,7 @@
             <h3>{{ article.title }}</h3>
           <div>          
             <div class="news-image" style="background-image: url({{ article.imageUrl }})"></div>
-            <div class="news-texts">{{ article.content }}</div>
+            <div class="news-texts">{{ article.content | raw }}</div>
           </div>
 
         </div>

@@ -29,6 +29,20 @@
 {% block javascripts %}
   <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
   <script>
+          $(document).ready(function() {
+            $("input[type='file']").change(function(){
+                var file = $(this).get(0).files[0]
+                console.log(file)
+                if(file){
+                    var reader = new FileReader();
+                    reader.onload = function(){
+                        var img = `<img src='${reader.result}' alt="Preview Image"/>`;
+                        $(".image-preview").html(img)
+                    }
+                    reader.readAsDataURL(file)
+                }
+            })
+        });
     ClassicEditor .create( document.querySelector( '#article_content' ) )
     .then(editor => { console.log( editor ); } ) .catch( error => {
     console.error( error ); } );

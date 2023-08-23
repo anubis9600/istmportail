@@ -59,12 +59,16 @@
           </div>
         </div>
         <div class="hours flex gap-10">
-          <div class="start-hour"></div>
           <div class="start-hour flex">
             {% if app.user %}
-              <a href="/logout"><i class="fa-solid fa-lock-open"></i></a>
+              <a href="/account"><i class="fa-solid fa-desktop" title="Administration"></i></i></a>
+            {% endif %}
+          </div>
+          <div class="start-hour flex">
+            {% if app.user %}
+              <a href="/logout"><i class="fa-solid fa-lock-open" title="Deconnexion"></i></a>
             {% else %}
-              <a href="/login"><i class="fa-solid fa-lock"></i></a>
+              <a href="/login"><i class="fa-solid fa-lock" title="Connexion"></i></a>
             {% endif %}
           </div>
         </div>
@@ -114,6 +118,8 @@
     {% block events_news %}
 
     {% endblock %}
+    {% block usersdetails %}
+    {% endblock %}
     {% block body %}
 
     {% endblock %}
@@ -122,21 +128,20 @@
     {% endblock %}
 
     <footer></footer>
-
-    {% block javascripts %}
-      {{ encore_entry_script_tags('app') }}
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+      <script src="/_assets/js/jquery-3.6.4.js"></script>
+      <script src="/_assets/js/readmore.min.js"></script>
       <script src="/_assets/js/editor.js"></script>
       <script src="/_assets/js/functions/listeners.js"></script>
       <script src="/_assets/js/main.js"></script>
+    {% block javascripts %}
+     {{ encore_entry_script_tags('app') }}
     {% endblock %}
   </body>
 </html>

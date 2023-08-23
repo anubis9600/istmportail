@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Repository\UserRepository;
 use App\Services\UploadFile;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,8 +16,21 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/account')]
 class ArticleController extends AbstractController
 {
-    #[Route('/', name: 'app_article_index', methods: ['GET'])]
-    public function index(ArticleRepository $articleRepository): Response
+    private $uploadFile;
+
+    public function __construct(UploadFile $uploadFile) {
+        $this->uploadFile = $uploadFile;
+    }
+
+    #[Route('/', name: 'app_article_dashboard', methods: ['GET'])]
+    public function index(): Response
+    {
+        return $this->render('article/index.html.twig', [
+        ]);
+    }
+
+    #[Route('/articles', name: 'app_article_index', methods: ['GET'])]
+    public function articles(ArticleRepository $articleRepository): Response
     {
         $user = $this->getUser();
 
@@ -26,13 +40,13 @@ class ArticleController extends AbstractController
 
         $articles = $articleRepository->findByAuthor($user);
 
-        return $this->render('article/index.html.twig', [
+        return $this->render('article/articles.html.twig', [
             'articles' => $articles,
         ]);
     }
 
     #[Route('/new', name: 'app_article_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, UploadFile $uploadFile): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
@@ -42,10 +56,10 @@ class ArticleController extends AbstractController
             $article->setCreatedAt(new \DateTimeImmutable());
             $file = $form["imageFile"]->getData();
 
-            $file_url = $uploadFile->saveFile($file);
+            $file_url = $this->uploadFile->saveFile($file);
+
             $article->setImageUrl($file_url);
             $article->setAuthor($this->getUser());
-            dd($article);
 
             $entityManager->persist($article);
             $entityManager->flush();
@@ -74,6 +88,14 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $article->setUpdatedAt(new \DateTimeImmutable());
+
+            $file = $form["imageFile"]->getData();
+            if ($file) {
+                $file_url = $this->uploadFile->updateFile($file, $article->getImageUrl());
+                $article->setImageUrl($file_url);
+            }
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);

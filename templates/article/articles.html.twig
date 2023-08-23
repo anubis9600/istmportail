@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Article index
+{% endblock %}
+
+{% block body %}
+  <h1>
+    Article index
+  </h1>
+<div class="table-container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>
+          Id
+        </th>
+        <th>
+          Titre
+        </th>
+        <th>
+          Contenus
+        </th>
+        <th>
+          ImageUrl
+        </th>
+        <th>
+          CreatedAt
+        </th>
+        <th>
+          UpdatedAt
+        </th>
+        <th>
+          actions
+        </th>
+      </tr>
+    </thead>
+    <tbody class="articles-table">
+      {% for article in articles %}
+        <tr>
+          <td>
+            {{ article.id }}
+          </td>
+          <td>
+            {{ article.title }}
+          </td>
+          <td class="content">
+            {{ article.content|raw }}
+          </td>
+          <td class="table-image">
+            <div class="table-image-item">
+              <img src={{ article.imageUrl }} alt="" />
+            </div>
+          </td>
+          <td>
+            {{ article.createdAt ? article.createdAt|date('d/m/Y H:i:s') : '' }}
+          </td>
+          <td>
+            {{ article.updatedAt ? article.updatedAt|date('d/m/Y H:i:s') : '' }}
+          </td>
+          <td>
+            <a href="{{
+              path(
+                'app_article_show',
+                {
+                  id: article.id
+                }
+              )
+              }}">
+              show
+            </a>
+            <a href="{{
+              path(
+                'app_article_edit',
+                {
+                  id: article.id
+                }
+              )
+              }}">
+              edit
+            </a>
+          </td>
+        </tr>
+      {% else %}
+        <tr>
+          <td colspan="8">
+            Vous n'avez pas encore publier d'article <a href="{{ path('app_article_new') }}">Créez
+              en ici</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+  <a href="{{ path('app_article_new') }}">Create new</a>
+{% endblock %}
+{% block javascripts %}
+  <script>
+    $('.article-content').readmore();
+  </script>
+{% endblock %}

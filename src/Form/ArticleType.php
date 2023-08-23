@@ -34,6 +34,7 @@ class ArticleType extends AbstractType
             ])
             ->add('imageFile', FileType::class, [
                 'label' => false,
+                'required' => false,
                 'row_attr'=>['class'=>'form-group flex'],
                 'attr' =>[
                     'class'=>'flex-1'
