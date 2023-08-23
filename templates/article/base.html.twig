@@ -32,5 +32,15 @@
         </p>
         {% endif %}
       </div>
+    {% if  path('app_article_dashboard') %}
+
+    {% else %}
+      <ul class="flex gap-10">
+        <li><a href="{{ path('app_article_dashboard') }}">Tableau de bord</a></li>
+        <li><a href="{{ path('app_article_index') }}">Tableau de bord</a></li>
+        <li><a href="{{ path('app_article_new') }}">Tableau de bord</a></li>
+      </ul>
+    {% endif %}
+
 </div>
 {% endblock %}

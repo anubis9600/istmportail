@@ -61,7 +61,7 @@
         <div class="hours flex gap-10">
           <div class="start-hour flex">
             {% if app.user %}
-              <a href="/account"><i class="fa-solid fa-desktop" title="Administration"></i></i></a>
+              <a href="{{ path('app_article_dashboard') }}"><i class="fa-solid fa-desktop" title="Administration"></i></i></a>
             {% endif %}
           </div>
           <div class="start-hour flex">
