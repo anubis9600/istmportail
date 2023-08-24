@@ -4,12 +4,14 @@ namespace App\Form;
 
 use App\Entity\Article;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ArticleType extends AbstractType
 {
@@ -29,7 +31,22 @@ class ArticleType extends AbstractType
                 'required'=>false,
                 'attr' =>[
                     'placeholder' => "Contenu de l'article",
+                    "class" => "flex-1",
                     'rows'=>15,
+                ],
+                "row_attr" => [
+                    "class" => "form-group flex"
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Entrez les contenus de l\'article',
+                    ]),
+                    new Length([
+                        'min' => 10,
+                        'minMessage' => 'Les contenus de l\'article doit depasse {{ limit }} characteres',
+                        // max length allowed by Symfony for security reasons
+                        'max' => 4096,
+                    ]),
                 ]
             ])
             ->add('imageFile', FileType::class, [
@@ -41,8 +58,8 @@ class ArticleType extends AbstractType
                 ],
                 'constraints' => [
                     new File([
-                        'maxSize' => '2048k',
-                        'maxSizeMessage' => 'Le fichier est trop volumineux (1173.64 kB). La taille maximale autorisée est de 1024 kB',
+                        'maxSize' => '5M',
+                        'maxSizeMessage' => 'Le fichier est trop volumineux ({{ size }} {{ suffix }}). La taille maximale autorisée est de {{ limit }} {{ suffix }}',
                         'extensions' => [
                             'jpg',
                             'png'

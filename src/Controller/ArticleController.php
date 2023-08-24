@@ -5,8 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
-use App\Repository\UserRepository;
-use App\Services\UploadFile;
+use App\Services\ManageFile;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,10 +15,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/account')]
 class ArticleController extends AbstractController
 {
-    private $uploadFile;
+    private $manageFile;
 
-    public function __construct(UploadFile $uploadFile) {
-        $this->uploadFile = $uploadFile;
+    public function __construct(ManageFile $manageFile) {
+        $this->manageFile = $manageFile;
     }
 
     #[Route('/', name: 'app_article_dashboard', methods: ['GET'])]
@@ -56,7 +55,7 @@ class ArticleController extends AbstractController
             $article->setCreatedAt(new \DateTimeImmutable());
             $file = $form["imageFile"]->getData();
 
-            $file_url = $this->uploadFile->saveFile($file);
+            $file_url = $this->manageFile->saveFile($file);
 
             $article->setImageUrl($file_url);
             $article->setAuthor($this->getUser());
@@ -92,7 +91,7 @@ class ArticleController extends AbstractController
 
             $file = $form["imageFile"]->getData();
             if ($file) {
-                $file_url = $this->uploadFile->updateFile($file, $article->getImageUrl());
+                $file_url = $this->manageFile->updateFile($file, $article->getImageUrl());
                 $article->setImageUrl($file_url);
             }
 
@@ -111,8 +110,10 @@ class ArticleController extends AbstractController
     public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
+            $imageUrl = $article->getImageUrl();
             $entityManager->remove($article);
             $entityManager->flush();
+            $this->manageFile->removeFile($imageUrl);
         } 
 
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);

@@ -5,3 +5,8 @@ window.onload = () =>{
     myDiv.style.display = "none"
     setupListeners()
 }
+$(function(){
+    $("img").on("error", function(){
+        $(this).attr("src", "/_assets/images/articles/default.jpg")
+    })
+})

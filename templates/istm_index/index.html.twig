@@ -158,7 +158,7 @@
       </h1>
       <div class="all-news-item flex">
         <div class="top-news flex">
-        {% for article in articles|slice(-2)|reverse %}
+        {% for article in articles|slice(-3)|reverse %}
           <a href="/actualites_evenements/nouvelle/{{ article.slug }}" class="news-item">
               <img src={{ article.imageUrl }} alt="" />
               <div class="news-legende">

@@ -3,7 +3,7 @@ namespace App\Services;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class UploadFile extends AbstractController {
+class ManageFile extends AbstractController {
     public function generate_name($lenght = 20){
         $code = "3a7ze2rt0yu8io4pq9sd0f1ghj6k0lm5nb7vcx3w";
         $result = "";

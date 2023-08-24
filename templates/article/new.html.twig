@@ -39,6 +39,7 @@
                     reader.readAsDataURL(file)
                 }
             })
+            $("textarea").removeAttr("required")
         });
     ClassicEditor .create( document.querySelector( '#article_content' ) )
     .then(editor => { console.log( editor ); } ) .catch( error => {
