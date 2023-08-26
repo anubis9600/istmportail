@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\StudentBook;
 use App\Form\StudentBookType;
 use App\Repository\StudentBookRepository;
+use App\Services\ManageFile;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,6 +15,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/student/book')]
 class StudentBookController extends AbstractController
 {
+    private $manageFile;
+
+    public function __construct(ManageFile $manageFile) {
+        $this->manageFile = $manageFile;
+    }
     #[Route('/', name: 'app_student_book_index', methods: ['GET'])]
     public function index(StudentBookRepository $studentBookRepository): Response
     {
@@ -30,6 +36,11 @@ class StudentBookController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form["pdfFile"]->getData();
+
+            $file_url = $this->manageFile->savePdf($file);
+            $studentBook->setFileUrl($file_url);
+
             $entityManager->persist($studentBook);
             $entityManager->flush();
 
@@ -72,6 +83,9 @@ class StudentBookController extends AbstractController
     public function delete(Request $request, StudentBook $studentBook, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$studentBook->getId(), $request->request->get('_token'))) {
+            $pdfUrl = $studentBook->getFileUrl();
+            $this->manageFile->removeFile($pdfUrl);
+
             $entityManager->remove($studentBook);
             $entityManager->flush();
         }

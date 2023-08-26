@@ -22,7 +22,7 @@ class IstmAppFixtures extends Fixture
         for ($i=0; $i < 3; $i++) { 
             $user = (new User())->setFullName($faker->full_name())
                                 ->setEmail($faker->email())
-                                ->setPassword("olivier")
+                                ->setPassword(sha1("olivier"))
                                 ->setFonction($faker->country());
             $profile = (new Profile())->setPicture($faker->image())
                                     ->setDescription($faker->description(60))
@@ -79,7 +79,7 @@ class IstmAppFixtures extends Fixture
                                                 ->setStudentFullName($faker->full_name())
                                                 ->setYear($faker->dateTime())
                                                 ->setFileUrl("https://drive.google.com/file/d/1eubvbL5ZXGTH0WmA6d6sywwI1uIAy37f/view")
-                                                ->setFiliere($filiere);
+                                                ->setFiliere($filieres[rand(0, count($filieres)-1)]);
         
         $studentbooks[] = $studentbook;
         $manager->persist($studentbook);

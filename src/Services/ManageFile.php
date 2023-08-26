@@ -23,6 +23,13 @@ class ManageFile extends AbstractController {
 
         return '/_assets/images/articles/'.$filename;
     }
+    public function savePdf($file){
+        $extension = $file->guessExtension();
+        $filename = $this->generate_name(30).".".$extension;
+        $file->move($this->getParameter('pdf_dir'), $filename);
+
+        return '/_assets/documents/'.$filename;
+    }
 
     public function updateFile($file, $oldFile){
         $file_url = $this->saveFile($file);

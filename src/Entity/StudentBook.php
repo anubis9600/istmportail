@@ -29,6 +29,8 @@ class StudentBook
     #[ORM\Column(length: 255)]
     private ?string $fileUrl = null;
 
+    private ?string $pdfFile = null;
+
     #[ORM\ManyToOne(inversedBy: 'studentBooks')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Filiere $filiere = null;
@@ -94,6 +96,17 @@ class StudentBook
     public function setFileUrl(string $fileUrl): static
     {
         $this->fileUrl = $fileUrl;
+
+        return $this;
+    }
+    public function getPdfFile(): ?string
+    {
+        return $this->pdfFile;
+    }
+
+    public function setPdfFile(string $pdfFile): static
+    {
+        $this->pdfFile = $pdfFile;
 
         return $this;
     }

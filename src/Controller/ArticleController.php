@@ -111,9 +111,10 @@ class ArticleController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
             $imageUrl = $article->getImageUrl();
+            $this->manageFile->removeFile($imageUrl);
+            
             $entityManager->remove($article);
             $entityManager->flush();
-            $this->manageFile->removeFile($imageUrl);
         } 
 
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);

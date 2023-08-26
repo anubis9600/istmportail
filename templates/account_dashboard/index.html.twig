@@ -1,26 +1,13 @@
 <aside class="dashboard">
-  <ul>
-    <li><a href="{{ path('app_article_index') }}">Accueil</a></li>
-    {# <li>
-      <a href="{{ path('app_dashboard') }}"
-        class="{{ page == 'index' ? 'active' : '' }}">
-        Dashboard
-      </a>
-    </li>
-    <li>
-      <a href="{{ path('app_article_new') }}"
-        class="{{ page == 'new' ? 'active' : '' }}">
-        Publier un nouveau article
-      </a>
-    </li>
-    <li>
-      <a href="{{ path('app_article_index') }}"
-        class="{{ page == 'articles' ? 'active' : '' }}">
-        Mes articles
-      </a>
-    </li>
-    <li class="nav-item"><a href="/register">Ajouter un utilisateur</a></li>
-    <li><a href="{{ path('app_article_index') }}">Mes donnees</a></li>
-    <li><a href="{{ path('app_logout') }}">Deconnexion</a></li> #}
+<h1>Administration de l'Application</h1>
+  <ul class="dashboard-menu flex">
+    <ul class="flex gap-10 flex-1">
+      <li class="flex-1"><a href="{{ path('app_article_index') }}"><i class="fa-solid fa-newspaper"></i> Gestion des articles</a></li>
+      <li class="flex-1"><a href="{{ path('app_event_index') }}"><i class="fa-regular fa-calendar-days"></i>Gestion des programmes</a></li>
+    </ul>
+    <ul class="flex gap-10 flex-1">
+      <li class="flex-1"><a href="{{ path('app_student_book_index') }}"><i class="fa-solid fa-book-open"></i>Gestion des livres</a></li>
+      <li class="flex-1"><a href="{{ path('app_user_index') }}"><i class="fa-solid fa-users"></i>Gerer des utilisateurs</a></li>
+    </ul>
   </ul>
 </aside>

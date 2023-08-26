@@ -62,7 +62,8 @@ class ArticleType extends AbstractType
                         'maxSizeMessage' => 'Le fichier est trop volumineux ({{ size }} {{ suffix }}). La taille maximale autorisée est de {{ limit }} {{ suffix }}',
                         'extensions' => [
                             'jpg',
-                            'png'
+                            'png',
+                            'webp'
                         ],
                         'mimeTypesMessage' => "Seul, les images sont permis",
                     ])],
