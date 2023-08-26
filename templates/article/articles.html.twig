@@ -18,12 +18,12 @@
     <img class="card-img-top" src="{{ article.imageUrl }}" alt="{{ article.title }}">
     <div class="card-body">
       <h5 class="card-title">{{ article.title }}</h5>
-      <nav>
+      {# <nav>
         <p class="card-text" id="card-text">{{ article.content|raw }}</p>
-      </nav>
+      </nav> #}
       {% if article.createdAt is not empty %}
         <div class="card-createdAt">
-          <i>Ajouté le </i> <strong> {{ article.createdAt|date('d/m/Y H:i:s') }}</strong>
+          <i>Ajouté le {{ article.createdAt|date('d/m/Y H:i:s') }}</i>
         </div>
       {% endif %}
       {% if article.updatedAt is not empty  %}

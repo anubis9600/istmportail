@@ -73,7 +73,11 @@
 }
 /* GERER ARTICLES */
 .card-flex{
-    padding: 0 10px;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+.card-flex .event{
+    width: 350px;
 }
 nav.gerer{
     padding: 5px;

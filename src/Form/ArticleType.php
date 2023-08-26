@@ -31,11 +31,7 @@ class ArticleType extends AbstractType
                 'required'=>false,
                 'attr' =>[
                     'placeholder' => "Contenu de l'article",
-                    "class" => "flex-1",
                     'rows'=>15,
-                ],
-                "row_attr" => [
-                    "class" => "form-group flex"
                 ],
                 'constraints' => [
                     new NotBlank([
