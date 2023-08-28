@@ -115,6 +115,7 @@
 
       {% endblock %}
     </div>
+
     {% block events_news %}
 
     {% endblock %}
@@ -127,7 +128,45 @@
 
     {% endblock %}
 
-    <footer></footer>
+    <footer>
+      <div class="all-footer-items flex">
+        <div class="footer-item flex">
+          <div class="footer-rigth-logo">
+            <img src="/_assets/images/logo/logo_istm.png" alt="">
+            <div class="footer-rigth-txt">
+            <ul>
+              <li class="flex gap-5"><i class="fa-solid fa-circle-question"></i><a href="#"><p>Contacter ISTM Uvira</p></a></li>
+              <li class="flex gap-5"><i class="fa-solid fa-location-dot"></i><a href="#"><p>Ville d'Uvira, Sud-Kivu, RDC</p></a></li>
+              <li class="flex gap-5"><i class="fa-solid fa-envelope"></i><a href="mailto:info@istmuvira.net"><p>info@istmuvira.net</p></a></li>
+              <li class="flex gap-5"><i class="fa-solid fa-phone"></i><a href="tel:+243896630941"><p>+243 896 630 941</p></a></li>
+            </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-item">
+          <h5>Nos Filières</h5>
+          <ul>
+          {% for f in filieres %}
+            <li><a href="filieres/{{ f.slug }}"> {{ f.title }} </a></li>
+          {% endfor %}
+          </ul>
+        </div>
+        <div class="footer-item">
+          <h5>Nos liens</h5>
+          <ul>
+            <li><a href="">A propos</a></li>
+            <li><a href="">Filieres</a></li>
+            <li><a href="">Evenements</a></li>
+            <li><a href="">Actualites</a></li>
+            <li><a href="">Recherches</a></li>
+            <li><a href="">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-adresses">
+        CAMPUS PRINCIPAL : N 25, Av. Reboisement, Commune de Kasenga, Ville d'Uvira
+      </div>
+    </footer>
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"

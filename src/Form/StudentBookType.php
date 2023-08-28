@@ -50,12 +50,11 @@ class StudentBookType extends AbstractType
                 ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Entrez les contenus de l\'article',
+                        'message' => 'Entrez une petite description de ce livre',
                     ]),
                     new Length([
-                        'min' => 10,
-                        'minMessage' => 'Les contenus de l\'article doit depasse {{ limit }} characteres',
-                        'max' => 4096,
+                        'max' => 500,
+                        'maxMessage' => 'La description ne doit pas etre inferieur a {{ limit }} characteres',
                     ]),
                 ]
             ])
@@ -89,7 +88,7 @@ class StudentBookType extends AbstractType
                 'class' => Filiere::class,
                 'choice_label' => 'title',
                 'label' => false,
-                'by_reference' => false,
+                'by_reference' => true,
                 'attr' =>[
                     "class" => "flex-1 choices_categories"
                 ],

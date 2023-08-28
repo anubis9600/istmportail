@@ -10,7 +10,7 @@
       <div class="filieres-left">
         <ul>
           {% for filiere in filieres %}
-            <li><a href="">{{ filiere.title }}</a></li>
+            <li><a href="/filieres/{{ filiere.slug }}">{{ filiere.title }}</a></li>
           {% endfor %}
         </ul>
       </div>
@@ -28,21 +28,23 @@
             trouverez votre voie à l'Institut Supérieur des Techniques
             Médicales!
           </p>
+          {% block filieres_right %}
           <div class="filieres-right-items flex">
             {% for filiere in filieres %}
               <div class="card" style="width: 16rem;">
                 <img class="card-img-top"
-                  src="/_assets/images/articles/filiere.jpg"
+                  src={{ filiere.imageUrl }}
                   alt="Card image cap" />
                 <div class="card-body">
                   <h5 class="card-title">
                     {{ filiere.title }}
                   </h5>
-                  <a href="#" class="button">Explorer</a>
+                  <a href="/filieres/{{ filiere.slug }}" class="button">Explorer</a>
                 </div>
               </div>
             {% endfor %}
           </div>
+      {% endblock %}
         </div>
       </div>
       <div class="filieres-center">

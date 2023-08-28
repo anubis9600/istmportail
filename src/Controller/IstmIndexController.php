@@ -14,15 +14,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class IstmIndexController extends AbstractController
 {
     #[Route('/', name: 'app_istm_index')]
-    public function index(ArticleRepository $articleRepository, EventRepository $eventRepository): Response
+    public function index(ArticleRepository $articleRepository, EventRepository $eventRepository,
+    FiliereRepository $filiereRepository): Response
     {
         $articles = $articleRepository->findAll();
         $events = $eventRepository->findAll();
+        $filieres = $filiereRepository->findAll();
         
         return $this->render('istm_index/index.html.twig', [
             'controller_name' => 'IstmIndexController',
             'articles' => $articles,
             'events'  => $events,
+            'filieres' => $filieres
         ]);
     }
 
@@ -94,7 +97,7 @@ class IstmIndexController extends AbstractController
         ]);
     }
 
-    #[Route('/filieres/{slug}', name: 'domaines_single-app')]
+    #[Route('/filieres/{slug}', name: 'domaines_single_app')]
     public function domainessingle_index(FiliereRepository $filiereRepository, OrientationRepository $orientationRepository, $slug): Response
     {
         $filiere = $filiereRepository->findOneBySlug($slug);
@@ -106,4 +109,16 @@ class IstmIndexController extends AbstractController
             'orientations' => $orientations
         ]);
     }
+    // #[Route('/filieres/{slug}', name: 'base_app')]
+    // public function base_app(FiliereRepository $filiereRepository, $slug): Response
+    // {
+    //     $filiere = $filiereRepository->findOneBySlug($slug);
+    //     $filieres = $filiereRepository->findAll();
+
+    //     return $this->render('base.html.twig', [
+    //         'controller_name' => 'IstmIndexController',
+    //         'filiere' => $filiere,
+    //         'filieres' => $filieres
+    //     ]);
+    // }
 }

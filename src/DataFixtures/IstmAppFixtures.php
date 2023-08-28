@@ -19,7 +19,7 @@ class IstmAppFixtures extends Fixture
         $faker = new Faker();
         $profile = new Profile();
         $users = [];
-        for ($i=0; $i < 3; $i++) { 
+        for ($i=0; $i < 2; $i++) { 
             $user = (new User())->setFullName($faker->full_name())
                                 ->setEmail($faker->email())
                                 ->setPassword(sha1("olivier"))

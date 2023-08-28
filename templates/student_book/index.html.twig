@@ -1,43 +1,29 @@
 {% extends 'article/base.html.twig' %}
 
-{% block title %}StudentBook index{% endblock %}
+{% block title %}Gestion des livres{% endblock %}
 
 {% block body %}
-    <h1>StudentBook index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>StudentFullName</th>
-                <th>Year</th>
-                <th>FileUrl</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for student_book in student_books %}
-            <tr>
-                <td>{{ student_book.id }}</td>
-                <td>{{ student_book.title }}</td>
-                <td>{{ student_book.description }}</td>
-                <td>{{ student_book.studentFullName }}</td>
-                <td>{{ student_book.year ? student_book.year|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ student_book.fileUrl }}</td>
-                <td>
-                    <a href="{{ path('app_student_book_show', {'id': student_book.id}) }}">show</a>
-                    <a href="{{ path('app_student_book_edit', {'id': student_book.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<nav class="gerer flex">
+  <h1 class="gerer-title">
+    Gestion des evements
+  </h1>
+  <a href="{{ path('app_student_book_new') }}" title="Ajouter un livre"><i class="fa-solid fa-plus"></i></a>
+</nav>
+<div class="card-flex flex gap-5">
+{% for student_book in student_books | reverse %}
+  <div class="card event">
+  <h5 class="card-header">{{ student_book.title }}</h5>
+  <div class="card-body">
+    <h5 class="card-title">Nom de l'auteur: {{ student_book.studentFullName }}</h5>
+    <p class="card-text">Année de publication :  {{ student_book.year ? student_book.year|date('Y') : '' }}</p>
+    <div class="flex">          
+    <a class="btn btn-primary" href="{{ path('app_student_book_show', {'id': student_book.id}) }}">Voir plus</a>
+    <a class="btn btn-primary" href="{{ path('app_student_book_edit', {'id': student_book.id}) }}">Modifier</a>
+    </div>
+  </div>
+</div>
+{% endfor %}
+</div>
 
-    <a href="{{ path('app_student_book_new') }}">Create new</a>
 {% endblock %}

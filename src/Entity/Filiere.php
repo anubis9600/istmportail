@@ -25,8 +25,13 @@ class Filiere
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 5, nullable: true)]
-    private ?int $cycle = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageUrl = null;
+
+    private ?string $imageFile = null;
+
+    // #[ORM\Column(length: 5, nullable: true)]
+    // private ?string $cycle = null;
 
     #[ORM\OneToMany(mappedBy: 'filiere', targetEntity: StudentBook::class)]
     private Collection $studentBooks;
@@ -70,17 +75,17 @@ class Filiere
         return $this;
     }
 
-    public function setCycle(): ?int
-    {
-        return $this->cycle;
-    }
+    // public function setCycle(): ?string
+    // {
+    //     return $this->cycle;
+    // }
 
-    public function getCycle(?int $cycle): static
-    {
-        $this->cycle = $cycle;
+    // public function getCycle(?string $cycle): static
+    // {
+    //     $this->cycle = $cycle;
 
-        return $this;
-    }
+    //     return $this;
+    // }
     public function getDescription(): ?string
     {
         return $this->description;
@@ -89,6 +94,30 @@ class Filiere
     public function setDescription(?string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getImageUrl(): ?string
+    {
+        return $this->imageUrl;
+    }
+
+    public function setImageUrl(string $imageUrl): static
+    {
+        $this->imageUrl = $imageUrl;
+
+        return $this;
+    }
+
+    public function getImageFile(): ?string
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(string $imageFile): static
+    {
+        $this->imageFile = $imageFile;
 
         return $this;
     }

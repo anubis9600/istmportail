@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'article/base.html.twig' %}
 
 {% block title %}New StudentBook{% endblock %}
 
@@ -9,6 +9,6 @@
 
     {{ include('student_book/_form.html.twig') }}
 
-    <a href="{{ path('app_student_book_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('app_student_book_index') }}">Retour sur la liste</a>
 </div></div>
 {% endblock %}
