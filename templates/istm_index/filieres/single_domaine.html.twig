@@ -1,4 +1,3 @@
-{# {% extends '/istm_index/filieres/base_filieres.html.twig' %} #}
 {% extends '/istm_index/filieres/filieres_index.html.twig' %}
 
 {% block title %}
@@ -6,30 +5,23 @@
 {% endblock %}
 
 {% block body %}
-{% block filieres_right %}
-  <div class="single-domaine">
-    <div class="container">
-      <div class="card mb-4">
-        <img class="card-img-top"
-          src="{{ filiere.imageUrl }}"
-          alt="Card image cap" />
-        <div class="card-body">
-          <h5 class="card-title">
-            Filière de {{ filiere.title }}
-          </h5>
-          <p class="card-text">
-          {% if filiere.description is not empty %}
-            {{ filiere.description | raw }}
-          {% else %}
-            <h6>Aucune description pour le moment</h6>
-          {% endif %}
-          </p>
-          <p class="card-text">
-            <small class="text-muted">Dernier mis a jour 3 mins</small>
-          </p>
-        </div>
-      </div>
+  {% block filieres_right %}
+    <div class="filieres-right">
+      <h5 class="card-title">
+        Filière de {{ filiere.title }}
+      </h5>
+      <p class="card-text">
+        {% if filiere.description is not empty %}
+          {{ filiere.description|raw }}
+        {% else %}
+          <h6>
+            Aucune description pour le moment
+          </h6>
+        {% endif %}
+      </p>
+      <p class="card-text">
+        <small class="text-muted">Dernier mis a jour 3 mins</small>
+      </p>
     </div>
-  </div>
-{% endblock %}
+  {% endblock %}
 {% endblock %}

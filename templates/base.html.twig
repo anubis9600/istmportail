@@ -31,7 +31,6 @@
         </h3>
         <ul>
           <li class="nav-item"><a href="/">Acceuil</a></li>
-          <li class="nav-item"><a href="">A propos</a></li>
           <li class="nav-item down"><a href="">Filieres</a></li>
           <li class="nav-item">
             <a href="/actualites_evenements">Evenements</a>
@@ -40,6 +39,7 @@
             <a href="/actualites_evenements">Actualités</a>
           </li>
           <li class="nav-item"><a href="/recherches">Recherches</a></li>
+          <li class="nav-item"><a href="/apropos">A propos</a></li>
           <li class="nav-item"><a href="/contact">Contact</a></li>
         </ul>
       </div>
@@ -82,8 +82,6 @@
             <ul class="nav-bar flex gap-15">
               <li class="nav-item"><a href="/">Acceuil</a></li>
               <div class="separate-menu"></div>
-              <li class="nav-item"><a href="">A propos</a></li>
-              <div class="separate-menu"></div>
               <li class="nav-item down">
                 <a href="/filieres">Filieres</a>
                 <ul>
@@ -101,7 +99,9 @@
               <div class="separate-menu"></div>
               <li class="nav-item"><a href="/recherches">Recherches</a></li>
               <div class="separate-menu"></div>
-              <li class="nav-item"><a href="/contact">Contact</a></li>
+              <li class="nav-item"><a href="/apropos">A propos</a></li>
+              <div class="separate-menu"></div>
+              <li class="nav-item"><a href="#">Contact</a></li>
               <div class="arrow-left">
                 <a href=""><i class="fa-solid fa-caret-left"></i></a>
               </div>
@@ -124,6 +124,7 @@
     {% block body %}
 
     {% endblock %}
+
     {% block feedback %}
 
     {% endblock %}
@@ -146,20 +147,23 @@
         <div class="footer-item">
           <h5>Nos Filières</h5>
           <ul>
+          {% if filieres is defined %}
           {% for f in filieres %}
             <li><a href="filieres/{{ f.slug }}"> {{ f.title }} </a></li>
           {% endfor %}
+          {% endif %}
           </ul>
         </div>
         <div class="footer-item">
           <h5>Nos liens</h5>
           <ul>
-            <li><a href="">A propos</a></li>
-            <li><a href="">Filieres</a></li>
-            <li><a href="">Evenements</a></li>
-            <li><a href="">Actualites</a></li>
-            <li><a href="">Recherches</a></li>
-            <li><a href="">Contact</a></li>
+            <li><a href="/apropos">A propos</a></li>
+            <li><a href="/filieres">Filieres</a></li>
+            <li><a href="/actualites_evenements">Evenements</a></li>
+            <li><a href="/actualites_evenements">Actualites</a></li>
+            <li><a href="/recherches">Recherches</a></li>
+            <li><a href="/admission">Admission</a></li>
+            <li><a href="#">Contact</a></li>
           </ul>
         </div>
       </div>

@@ -5,16 +5,7 @@
 {% endblock %}
 
 {% block body %}
-  <div class="all-filieres">
-    <div class="container flex">
-      <div class="filieres-left">
-        <ul>
-          {% for filiere in filieres %}
-            <li><a href="/filieres/{{ filiere.slug }}">{{ filiere.title }}</a></li>
-          {% endfor %}
-        </ul>
-      </div>
-      <div class="filieres-right">
+{% block filieres_right %}
         <div class="filieres-right-text">
           <h1>
             Domaines d'études
@@ -28,38 +19,21 @@
             trouverez votre voie à l'Institut Supérieur des Techniques
             Médicales!
           </p>
-          {% block filieres_right %}
           <div class="filieres-right-items flex">
-            {% for filiere in filieres %}
+            {% for f in filiere %}
               <div class="card" style="width: 16rem;">
                 <img class="card-img-top"
-                  src={{ filiere.imageUrl }}
+                  src={{ f.imageUrl }}
                   alt="Card image cap" />
                 <div class="card-body">
                   <h5 class="card-title">
-                    {{ filiere.title }}
+                    {{ f.title }}
                   </h5>
-                  <a href="/filieres/{{ filiere.slug }}" class="button">Explorer</a>
+                  <a href="/filieres/{{ f.slug }}" class="button">Explorer</a>
                 </div>
               </div>
             {% endfor %}
           </div>
-      {% endblock %}
         </div>
-      </div>
-      <div class="filieres-center">
-        <h1>
-          Admission
-        </h1>
-        <h3>
-          Vous avez fait votre choix
-        </h3>
-        <p>
-          Découvrez maintenant comment déposer votre dossier de demande
-          d'Inscription
-        </p>
-        <a href="" class="button">Admission</a>
-      </div>
-    </div>
-  </div>
+  {% endblock %}
 {% endblock %}

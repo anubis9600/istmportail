@@ -159,8 +159,8 @@
       <div class="all-news-item flex">
         <div class="top-news flex">
         {% for article in articles|slice(-3)|reverse %}
-          <a href="/actualites_evenements/nouvelle/{{ article.slug }}" class="news-item">
-              <img src={{ article.imageUrl }} alt="" />
+          <div class="top-news-item" style="background-image: url({{ article.imageUrl }});">
+              {# <img src={{ article.imageUrl }} alt="" /> #}
               <div class="news-legende">
                 <div class="author">
                   <div class="author-avatar">
@@ -175,11 +175,10 @@
                     <div class="createdat"> <i class="fa-regular fa-calendar-days"></i> {{ article.fromNow }}</div>
                   </div>
                 </div>
-                <h2 class="news-title">
-                  <h3>{{ article.title }}</h3>
-                </h2>
+                <a href="/actualites_evenements/nouvelle/{{ article.slug }}" class="news-title">
+                  {{ article.title }}</a>
               </div>
-          </a>
+          </div>
         {% endfor %}
         </div>
     </div>

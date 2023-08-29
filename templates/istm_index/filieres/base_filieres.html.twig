@@ -39,6 +39,32 @@
   </div>
   <div class="back">
   </div>
+  <div class="all-filieres">
+    <div class="container flex">
+      <div class="filieres-left">
+        <ul>
+          {% for f in filiere %}
+            <li><a href="/filieres/{{ f.slug }}">{{ f.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% block filieres_right %}
+      {% endblock %}
+      <div class="filieres-center">
+        <h1>
+          Admission
+        </h1>
+        <h3>
+          Vous avez fait votre choix
+        </h3>
+        <p>
+          Découvrez maintenant comment déposer votre dossier de demande
+          d'Inscription
+        </p>
+        <a href="/admission" class="button">Admission</a>
+      </div>
+    </div>
+  </div>
 {% endblock %}
 {% block body %}
 

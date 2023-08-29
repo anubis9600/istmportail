@@ -6,6 +6,49 @@
 .events-news-menu ul li a p{
     margin-bottom: 0 !important;
 }
+.title-apropos{
+    font-family: 'Museo500';
+    text-align: center;
+}
+.all-admissions{
+    gap: 20px;
+}
+.admission-text h1{
+    font-family: 'Museo500';
+}
+.admission-text h3{
+    padding: 10px 0;
+    font-family: 'Museo500';
+}
+.admission-text ol {
+    list-style: none;
+    counter-reset: item;
+  }
+  .admission-text ol li {
+    counter-increment: item;
+    margin-bottom: 5px;
+  }
+  .admission-text li:before {
+    margin-right: 10px;
+    content: counter(item);
+    background: var(--main-color);
+    border-radius: 100%;
+    color: white;
+    width: 1.5em;
+    text-align: center;
+    display: inline-block;
+}
+
+.admission-filiere ul{
+    padding-left: 0;
+}
+.admission-filiere ul li{
+    padding: 5px 0;
+}
+.admission-filiere-title p{
+    background-color: var(--main-color);
+    padding: 10px;
+}
 
 @media screen and (max-width:505px){
     .events-news-menu ul li a{

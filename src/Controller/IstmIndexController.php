@@ -64,6 +64,17 @@ class IstmIndexController extends AbstractController
         ]);
     }
 
+    #[Route('/actualites_evenements/evenements/', name: 'app_all_events')]
+    public function all_events(EventRepository $eventRepository): Response
+    {
+        $events = $eventRepository->findAll();
+
+        return $this->render('istm_index/all_events.html.twig', [
+            'controller_name' => 'IstmIndexController',
+            'events' => $events
+        ]);
+    }
+
     #[Route('/actualites_evenements/evenement/{slug}', name: 'app_single_event')]
     public function single_event(EventRepository $eventRepository, $slug): Response
     {
@@ -86,39 +97,45 @@ class IstmIndexController extends AbstractController
         ]);
     }
 
-    #[Route('/filieres', name: 'domaines_admissions-app')]
+    #[Route('/filieres', name: 'domaines_admissions_app')]
     public function domainesadmissions_index(FiliereRepository $filiereRepository): Response
     {
-        $filieres = $filiereRepository->findAll();
+        $filiere = $filiereRepository->findAll();
 
-        return $this->render('istm_index/filieres/filieres_index.html.twig', [
+        return $this->render('/istm_index/filieres/filieres_index.html.twig', [
             'controller_name' => 'IstmIndexController',
-            'filieres' => $filieres
+            'filiere' => $filiere
         ]);
     }
 
     #[Route('/filieres/{slug}', name: 'domaines_single_app')]
-    public function domainessingle_index(FiliereRepository $filiereRepository, OrientationRepository $orientationRepository, $slug): Response
+    public function domaines_single_app(FiliereRepository $filiereRepository, $slug): Response
     {
         $filiere = $filiereRepository->findOneBySlug($slug);
-        $orientations = $orientationRepository->findAll();
 
         return $this->render('istm_index/filieres/single_domaine.html.twig', [
             'controller_name' => 'IstmIndexController',
-            'filiere' => $filiere,
-            'orientations' => $orientations
+            'filiere' => $filiere
         ]);
     }
-    // #[Route('/filieres/{slug}', name: 'base_app')]
-    // public function base_app(FiliereRepository $filiereRepository, $slug): Response
-    // {
-    //     $filiere = $filiereRepository->findOneBySlug($slug);
-    //     $filieres = $filiereRepository->findAll();
+    #[Route('/apropos', name: 'apropos_app')]
+    public function apropos_app(FiliereRepository $filiereRepository): Response
+    {
+        $filiere = $filiereRepository->findAll();
 
-    //     return $this->render('base.html.twig', [
-    //         'controller_name' => 'IstmIndexController',
-    //         'filiere' => $filiere,
-    //         'filieres' => $filieres
-    //     ]);
-    // }
+        return $this->render('istm_index/apropos.html.twig', [
+            'controller_name' => 'IstmIndexController',
+            'filiere' => $filiere
+        ]);
+    }
+    #[Route('/admission', name: 'admission_app')]
+    public function admission_app(FiliereRepository $filiereRepository): Response
+    {
+        $filieres = $filiereRepository->findAll();
+
+        return $this->render('istm_index/admission.html.twig', [
+            'controller_name' => 'IstmIndexController',
+            'filieres' => $filieres
+        ]);
+    }
 }
