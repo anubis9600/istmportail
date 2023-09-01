@@ -16,10 +16,10 @@ class Event
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $startDate = null;
+    private ?\DateTime $startDate = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $endDate = null;
+    private ?\DateTime $endDate = null;
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
@@ -27,7 +27,7 @@ class Event
     #[ORM\Column(length: 255, nullable: false)]
     private ?string $slug = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
 
     public function getId(): ?int
@@ -35,24 +35,24 @@ class Event
         return $this->id;
     }
 
-    public function getStartDate(): ?\DateTimeImmutable
+    public function getStartDate(): ?\DateTime
     {
         return $this->startDate;
     }
 
-    public function setStartDate(\DateTimeImmutable $startDate): static
+    public function setStartDate(\DateTime $startDate): static
     {
         $this->startDate = $startDate;
 
         return $this;
     }
 
-    public function getEndDate(): ?\DateTimeImmutable
+    public function getEndDate(): ?\DateTime
     {
         return $this->endDate;
     }
 
-    public function setEndDate(?\DateTimeImmutable $endDate): static
+    public function setEndDate(?\DateTime $endDate): static
     {
         $this->endDate = $endDate;
 

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Event;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,8 +15,18 @@ class EventType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('startDate')
-            ->add('endDate')
+            ->add('startDate', DateType::class, [
+                'label' => 'Date debut',
+                'placeholder' => ['year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
+                'hour' => 'H', 'minute' => 'M', 'second' => 'S'],
+                'input_format' => 'd/m/Y H:i:s'
+            ])
+            ->add('endDate', DateType::class, [
+                'label' => "Date fin (N'est pas obligatoire)",
+                'placeholder' => ['year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
+                'hour' => 'H', 'minute' => 'M', 'second' => 'S'],
+                'input_format' => 'd/m/Y H:i:s'
+            ])
             ->add('title', TextType::class, [
                 'label' => false,
                 'attr' =>[

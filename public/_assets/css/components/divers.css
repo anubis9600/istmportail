@@ -48,8 +48,14 @@
 .admission-filiere-title p{
     background-color: var(--main-color);
     padding: 10px;
+    color: white;
 }
-
+.card-flex{
+    gap: 10px;
+}
+.card-img-top{
+    height: 300px;
+}
 @media screen and (max-width:505px){
     .events-news-menu ul li a{
         flex-direction: column;
